@@ -1,11 +1,19 @@
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
-void main() {
-  runApp(const Bookly());
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  // this step used to set device not rotated
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(const Bookly());
+  });
 }
 
 class Bookly extends StatelessWidget {

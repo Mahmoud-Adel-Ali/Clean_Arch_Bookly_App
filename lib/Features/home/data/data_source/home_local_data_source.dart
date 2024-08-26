@@ -11,7 +11,7 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<BookEntity> fetchFeatureBooks() {
     // Implementation for fetching featured books from local storage
-    var box = Hive.box<BookEntity>(kFeatureBooks);
+    var box = Hive.box<BookEntity>(kFeatureBooksBox);
     List<BookEntity> books = box.values.toList();
     return books;
   }
@@ -19,7 +19,7 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<BookEntity> fetchNewestBooks() {
     // Implementation for fetching newest books from local storage
-    var box = Hive.box<BookEntity>(kNewestBooks);
+    var box = Hive.box<BookEntity>(kNewestBooksBox);
     List<BookEntity> books = box.values.toList();
     return books;
   }

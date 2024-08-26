@@ -19,8 +19,9 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   List<BookEntity> fetchNewestBooks() {
     // Implementation for fetching newest books from local storage
-    // Example: return await _localDatabase.getNewestBooks();
-    return [];
+    var box = Hive.box<BookEntity>(kNewestBooks);
+    List<BookEntity> books = box.values.toList();
+    return books;
   }
 
   // Add other methods for fetching other data sources if needed

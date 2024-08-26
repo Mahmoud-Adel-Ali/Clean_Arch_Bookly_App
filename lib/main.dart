@@ -13,6 +13,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox(kFeatureBooks);
+  await Hive.openBox(kNewestBooks);
   // this step used to set device not rotated
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,

@@ -1,12 +1,16 @@
+import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // hive
+  Hive.registerAdapter(BookEntityAdapter());
+  await Hive.openBox(kFeatureBooks);
   // this step used to set device not rotated
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,

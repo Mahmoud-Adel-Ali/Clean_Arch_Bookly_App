@@ -27,7 +27,21 @@ class ServerFailure extends Failure {
         return ServerFailure(
             message: 'Oops : There was an error , please try agin');
       case DioExceptionType.badResponse:
+        return ServerFailure.fromResponse(e.response!.statusCode!, e.response);
     }
   }
 
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
+    if (statusCode == 404) {
+      return ServerFailure(
+          message: 'Your request was not found , please try later');
+    } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      return ServerFailure(message: response['error']['message']);
+    } else if (statusCode == 500) {
+      return ServerFailure(
+          message: 'There is a problem with server , please try later');
+    }
+    return ServerFailure(
+        message: ' There was an error, please try again , stuts code error');
+  }
 }

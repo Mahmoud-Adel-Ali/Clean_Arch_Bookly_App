@@ -3,7 +3,6 @@ import 'package:bookly/core/utils/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../home/presentation/views/widgets/best_seller_list_view_item.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});

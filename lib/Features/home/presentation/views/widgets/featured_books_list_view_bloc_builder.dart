@@ -29,11 +29,13 @@ class _FeaturedBooksListViewBlocBuilderState
       builder: (context, state) {
         if (state is FeaturedBooksSuccess ||
             state is FeaturedBooksPaginationloading) {
-          return FeaturedBooksListView(books: allBooks);
+          return FeaturedBooksListView(
+              books: allBooks,
+              isLoading: state is FeaturedBooksPaginationloading);
         } else if (state is FeaturedBooksFailure) {
           return Text(state.errorMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const FeaturedBooksListView(books: [], isLoading: true);
         }
       },
     );

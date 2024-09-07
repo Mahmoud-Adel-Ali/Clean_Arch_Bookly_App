@@ -1,6 +1,7 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/Features/home/presentation/manager/featured_bools_cubit/featured_bools_cubit.dart';
 import 'package:bookly/Features/home/presentation/views/widgets/featured_list_view.dart';
+import 'package:bookly/core/utils/functions/toast_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,11 +27,7 @@ class _FeaturedBooksListViewBlocConsumerState
           allBooks.addAll(state.books);
         }
         if (state is FeaturedBooksPaginationFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorMessage),
-            ),
-          );
+          toastMessage(msg: state.errorMessage);
         }
       },
       builder: (context, state) {

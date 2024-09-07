@@ -10,18 +10,19 @@ class CustomFadingWidget extends StatefulWidget {
 class _CustomFadingWidgetState extends State<CustomFadingWidget>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
-  late Animation<double> animation;
+  late Animation animation;
 
   @override
   void initState() {
-    super.initState();
-    animationController =
-        AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
     animation =
         Tween<double>(begin: 0.2, end: 0.8).animate(animationController);
     animationController.addListener(() {
       setState(() {});
     });
+    animationController.repeat(reverse: true);
+    super.initState();
   }
 
   @override

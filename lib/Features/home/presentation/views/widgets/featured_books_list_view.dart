@@ -1,13 +1,14 @@
 import 'package:bookly/Features/home/domain/entities/book_entity.dart';
 import 'package:bookly/Features/home/presentation/manager/featured_bools_cubit/featured_bools_cubit.dart';
+import 'package:bookly/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'custom_book_item.dart';
 
 class FeaturedBooksListView extends StatefulWidget {
-  const FeaturedBooksListView(
-      {Key? key, required this.books})
+  const FeaturedBooksListView({Key? key, required this.books})
       : super(key: key);
   final List<BookEntity> books;
 
@@ -55,7 +56,13 @@ class _FeaturedBooksListViewState extends State<FeaturedBooksListView> {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: CustomBookImage(image: widget.books[index].image ?? ""),
+              child: InkWell(
+                  onTap: () {
+                    GoRouter.of(context).push(AppRouter.kBookDetailsView,
+                        extra: widget.books[index]);
+                  },
+                  child:
+                      CustomBookImage(image: widget.books[index].image ?? "")),
             );
           }),
     );
